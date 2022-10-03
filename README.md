@@ -8,7 +8,7 @@
  http://heroku.us.com
  ```
   ## Getting Started
-  To get started, you should install the dependencies of this application, prepare the local development, and follow the hosting instructions.
+  To get started, make a new directory `heroku_sample` for the project files, cd to the project directory and make a virtual environment, you should install the dependencies of this application, prepare the local development, and follow the hosting instructions.
   
   ### Dependencies
   
@@ -120,22 +120,193 @@ which heroku
 heroku login -i
  ```
  
- You can setup Environment variables in Heroku through 
+ - You can setup Environment variables in Heroku through (you will need this later)
  `Heroku dashboard >> Particular App >> Settings >> Reveal Config Vars section`
  And you will have the access to the env variables in Heroku.
  
+ - ### Migrations
+ 
+ install the following dependencies if you haven't already!
+ ```bash
+ pip install Flask-Script==2.0.6
+pip install Flask-Migrate==2.7.0
+pip install psycopg2-binary==2.9.1
+ ```
+ 
  then, you should run the following commands to setup the DB & Migrations on Heroku:
-   ```bash
+ ```bash
 python manage.py db init
 python manage.py db migrate
 python manage.py db upgrade
  ```
  
+ 
+ 
  ## API Endpoints
  
  There are several API endpoints in this application, and it's 8 endpoints in total but it's kind of repeated between two entities which is Movie and Actor.
  
- ### GET movie
+### GET /movies
+- Description: retrieve all the movies ordered by id.
+- Results are paginated in groups of 10, include a request argument to choose page number (start from 1)
+
+#### JSON Response body
+```bash
+{
+  "movies": formatted_movies,
+  "total_movies": len(Movie.query.all()),
+}
+```
+#### Attributes
++ `movies`: paginated movies list that is ordered by id (groups of 10).
++ `total_movies`: the number of current movies.
+
+### POST /movies
+- Description: create a new movie object.
+
+#### Request JSON body:
++ `title`: the title of the movie.
++ `release_date`: the release date of the movie.
+
+#### JSON Response body (Search for a book by title)
+```bash
+{
+  "id": new_movie.id,
+  "movies": formatted_movies,
+  "total_movies": len(Movie.query.all()),
+}
+```
+
+#### Attributes
++ `id`: indicate the id of the new created movie.
++ `movies`: paginated movies list that is ordered by id (groups of 10).
++ `total_movies`: the number of current movies.
+
+
+### DELETE /books/{book_id}
+- Description: delete an existing book object based on the id.
+- `book_id`: `request argument` that indicates the book id with the type `int`.
+#### JSON Response body (Delete an existing book)
+```bash
+{
+  "success": True,
+  "deleted": book.id,
+  "books": current_books,
+  "total_books": len(Book.query.all()),
+}
+```
+
+#### Attributes
++ `success`: indicate the success or failure of the request.
++ `deleted`: indicate the id of the deleted book.
++ `books`: paginated books list that is ordered by id (groups of 8).
++ `total_books`: the number of current books.
+
+#### Sample: Delete an existing book
+- `curl http://127.0.0.1:5000/books/23 -X DELETE`
+```bash
+{
+  "books": [
+    {
+      "author": "Stephen King",
+      "id": 1,
+      "rating": 5,
+      "title": "The Outsider: A Novel"
+    },
+    {
+      "author": "Lisa Halliday",
+      "id": 2,
+      "rating": 4,
+      "title": "Asymmetry: A Novel"
+    },
+    {
+      "author": "Kristin Hannah",
+      "id": 3,
+      "rating": 4,
+      "title": "The Great Alone"
+    },
+    {
+      "author": "Tara Westover",
+      "id": 4,
+      "rating": 5,
+      "title": "Educated: A Memoir"
+    },
+    {
+      "author": "Jojo Moyes",
+      "id": 5,
+      "rating": 5,
+      "title": "Still Me: A Novel"
+    },
+    {
+      "author": "Leila Slimani",
+      "id": 6,
+      "rating": 2,
+      "title": "Lullaby"
+    },
+    {
+      "author": "Amitava Kumar",
+      "id": 7,
+      "rating": 5,
+      "title": "Immigrant, Montana"
+    },
+    {
+      "author": "Madeline Miller",
+      "id": 8,
+      "rating": 5,
+      "title": "CIRCE"
+    }
+  ],
+  "deleted": 23,
+  "success": true,
+  "total_books": 16
+}
+
+```
+### PATCH /books/{book_id}
+- Description: update the rating of an existing book object with the attribute value from the JSON request body called `rating`.
+- `book_id`: `request argument` that indicates the book id with the type `int`.
+#### JSON Response body (Delete an existing book)
+```bash
+{
+  "id": book.id,
+  "success": True,
+}
+```
+
+#### Attributes
++ `success`: indicate the success or failure of the request.
++ `id`: indicate the id of the updated book.
+
+#### Sample: Update an existing book with the id 15
+- `curl http://127.0.0.1:5000/books/15 -X PATCH -H "Content-Type: application/json" -d '{"rating":"1"}'`
+```bash
+{
+  "id": 15,
+  "success": true
+}
+```
+ 
+ ## Error Handling
+
+In our app, uses conventional JSON objects to indicate the success or failure of an API request. It will return json response with a body that have the following attributes:
+- `error`: indicate the HTTP status code.
+- `message`: indicate a short description for the error type.
+- `success`: indicate the success or the failure of the request.
+
+#### Error Types:
+
+ - ##### Not Found (404)
+
+ - ##### Method Not Allowed (405)
+
+ - ##### Unprocessable (422)
+
+ - ##### Bad Request (400)
+
+ - ##### Internal Server Error (500)
+ - ##### Auth Error (AuthError)
+
+ 
  
  
   ## Testing
