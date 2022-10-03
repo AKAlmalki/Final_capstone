@@ -29,11 +29,8 @@
   pip3 freeze
   ```
   
-  after installing the dependencies, you should change a few things in the files to match your setting and configurations:
-  - "AUTH0_DOMAIN" in the auth.py file.
-  - "API_AUDIENCE" in the auth.py file.
-  - "DB_USER", "DB_PASSWORD", and "DB_NAME" in models.py.
-  - "DATABASE_URL", "AUTH0_DOMAIN", and "CLIENT_ID" in setup.sh file.
+  after installing the dependencies, you should change a few things in the files to match your settings and configurations:
+  - `DATABASE_URL, AUTH0_DOMAIN, and CLIENT_ID` in setup.sh file.
   
   after you finish, you can run the app locally (in the project directory) using:
   ```
@@ -133,5 +130,19 @@ python manage.py db init
 python manage.py db migrate
 python manage.py db upgrade
  ```
+ 
+ ## API Endpoints
+ 
+ There are several API endpoints in this application, and it's 8 endpoints in total but it's kind of repeated between two entities which is Movie and Actor.
+ 
+ ### GET movie
+ 
+ 
+  ## Testing
+  
+  We are doing the testing using Postman Collection, this collection have:
+  - One test for success behavior of each endpoint
+  - One test for error behavior of each endpoint
+  - At least two tests of RBAC for each role
  
  
