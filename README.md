@@ -1,36 +1,11 @@
-Instructions (The Casting Agency models)
+# Movie Studio App
 
-  The Casting Agency models a company that is responsible for creating movies and managing and assigning actors to those movies. You are an Executive Producer within the company and are creating a system to simplify and streamline your process.
-
-
-
-Models:
-
-  Movies with attributes title and release date
-  Actors with attributes name, age and gender
-
-Endpoints:
-
-  GET /actors and /movies
-  DELETE /actors/ and /movies/
-  POST /actors and /movies and
-  PATCH /actors/ and /movies/
-
-Roles:
-
-Casting Assistant
-  Can view actors and movies
-
-Casting Director
-  All permissions a Casting Assistant has and…
-  Add or delete an actor from the database
-  Modify actors or movies
-
-Executive Producer
-  All permissions a Casting Director has and…
-  Add or delete a movie from the database
-
-Tests:
-  One test for success behavior of each endpoint
-  One test for error behavior of each endpoint
-  At least two tests of RBAC for each role
+ In this app, we are trying to show you the movies with actors on it, so you can have better information about what actors are involved in this movie, what are the upcoming movies, and how many one of them is still acting in the new releases of the movies. However, you will get more infomation about the cinema world from this app.
+ 
+ ## URL for the API
+  Our API is hosted live via Heroku
+ ```bash
+ http://heroku.us.com
+ ```
+ 
+ 
