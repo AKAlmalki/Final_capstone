@@ -2,17 +2,51 @@
 
  In this app, we are trying to show you the movies with actors on it, so you can have better information about what actors are involved in this movie, what are the upcoming movies, and how many one of them is still acting in the new releases of the movies. However, you will get more infomation about the cinema world from this app.
  
- ## URL for the API
+ ## URL for the API (Base URL)
   Our API is hosted live via Heroku
  ```bash
  http://heroku.us.com
  ```
+  ## Getting Started
+  To get started, you should install the dependencies of this application, prepare the local development, and follow the hosting instructions.
+  
+  ### Dependencies
+  
+ - Python-3.8 and above.
+ - VS code editor (or any code editer).
+ - heroku cli.
+ - git.
+ - PostgreSQL.
  
- ## Authentication Login URL
+ And for the python packages, you can get them from the `requirements.txt` file in the project directory. You can install them all using the following command:
+ 
+ ```
+  pip3 install -r requirements.txt
+ ```
+  
+  You can see your python packages using the following commands:
+  ```
+  pip3 freeze
+  ```
+  
+  after installing the dependencies, you should change a few things in the files to match your setting and configurations:
+  - "AUTH0_DOMAIN" in the auth.py file.
+  - "API_AUDIENCE" in the auth.py file.
+  - "DB_USER", "DB_PASSWORD", and "DB_NAME" in models.py.
+  - "DATABASE_URL", "AUTH0_DOMAIN", and "CLIENT_ID" in setup.sh file.
+  
+  after you finish, you can run the app locally (in the project directory) using:
+  ```
+  python3 app.py
+  ```
+ - BUT you will have to setup Auth0 account to start using the application or testing it.
+ 
+ 
+## Authentication Login URL
  
  There are three predefined users I have setup for you, you can use them to login into Auth0 and test the RBAC, they are different based on the Role. However, you have to logout to test the other user.
  
- #### Login Info:
+#### Login Info:
  
  - Assistant:
    - email: assistant@gmail.com
@@ -67,3 +101,37 @@ https://zshinoz.us.auth0.com/authorize?audience=movieStudioAPI&response_type=tok
  ```
  
  `NOTE`: you can go to `jwt.io` website to see the content of this token.
+ 
+  
+ 
+ ## Hosting Instructions
+ 
+ We are using Heroku to host our application and its DB. However, you can install Heroku CLI to start using it properly through the following commands:
+ ```bash
+ # Install, if Heroku as Standalone
+curl https://cli-assets.heroku.com/install.sh | sh
+# Or, use Homebrew on Mac
+brew tap heroku/brew && brew install heroku
+# Verify the installation
+heroku --version
+# Verify the download
+which heroku
+ ```
+ 
+ Once you have the Heroku CLI installed, you can login using Heroku commands:
+  ```bash
+heroku login -i
+ ```
+ 
+ You can setup Environment variables in Heroku through 
+ `Heroku dashboard >> Particular App >> Settings >> Reveal Config Vars section`
+ And you will have the access to the env variables in Heroku.
+ 
+ then, you should run the following commands to setup the DB & Migrations on Heroku:
+   ```bash
+python manage.py db init
+python manage.py db migrate
+python manage.py db upgrade
+ ```
+ 
+ 
