@@ -1,0 +1,846 @@
+{
+	"info": {
+		"_postman_id": "30d34617-755a-44ba-bf79-8375505b215f",
+		"name": "test_capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23218930"
+	},
+	"item": [
+		{
+			"name": "GET movies - With no Auth token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 but AuthError-401\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    const responseJson = pm.response.json()",
+							"    pm.expect(responseJson.status_code).to.eql(401)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/movies",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET actors - With no Auth token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 but AuthError-401\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    const responseJson = pm.response.json()",
+							"    pm.expect(responseJson.status_code).to.eql(401)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/actors",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"actors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET movies - Correct -With Auth token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.jsonBody(\"movies\")",
+							"    pm.response.to.have.jsonBody(\"total_movies\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://myfinal-145454.herokuapp.com/movies",
+					"protocol": "https",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET actors - Correct -With Auth token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.jsonBody(\"actors\")",
+							"    pm.response.to.have.jsonBody(\"total_actors\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/actors",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"actors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST movies - Empty body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/movies",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST actors - Empty body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/actors",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"actors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST movies - Correct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.jsonBody(\"movies\")",
+							"    pm.response.to.have.jsonBody(\"total_movies\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Titan\",\n    \"release_date\": \"2022-10-12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/movies",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST actors - Correct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.jsonBody(\"actors\")",
+							"    pm.response.to.have.jsonBody(\"total_actors\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Saed\",\n    \"age\": \"27\",\n    \"gender\": \"M\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/actors",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"actors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE movies - Correct - Note:Change the id in the request argument",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.jsonBody(\"deleted\")",
+							"    pm.response.to.have.jsonBody(\"success\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/movies/2",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE actors - Correct - Note:Change the id in the request argument Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.jsonBody(\"deleted\")",
+							"    pm.response.to.have.jsonBody(\"success\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/actors/3",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"actors",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE movies - not existing id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"    const responseJson = pm.response.json()",
+							"    pm.expect(responseJson.success).to.eql(false)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/movies/100000",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies",
+						"100000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE actors - not existing id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"    const responseJson = pm.response.json()",
+							"    pm.expect(responseJson.success).to.eql(false)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/actors/100000",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"actors",
+						"100000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH movies - Empty body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"    const responseJson = pm.response.json()",
+							"    pm.expect(responseJson.success).to.eql(false)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/movies",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH actors - Empty body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"    const responseJson = pm.response.json()",
+							"    pm.expect(responseJson.success).to.eql(false)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/actors",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"actors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH movies - Correct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    const responseJson = pm.response.json()",
+							"    pm.expect(responseJson.success).to.eql(true)",
+							"    pm.response.to.have.jsonBody(\"updated_movie\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Snow\",\n    \"id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/movies",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH actors - Correct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    const responseJson = pm.response.json()",
+							"    pm.expect(responseJson.success).to.eql(true)",
+							"    pm.response.to.have.jsonBody(\"updated_actor\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Snowman\",\n    \"id\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/actors",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"actors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET movies - Correct with Producer Role",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.jsonBody(\"movies\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/movies",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST actors - Correct with Producer Role",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.jsonBody(\"actors\")",
+							"    pm.response.to.have.jsonBody(\"total_actors\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY2MzgzNzM2LCJleHAiOjE2NjYzOTA5MzYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Aenhb9fb2vNxMBa4G0EbAreTPbRPu5Cf7-oFCRorQpKSrHY5I1YiFfrGWYelRSJxXD4p4y_bzJ44xNwPz6OYDimq3EsSuNNt1kxGkOIdNjpABb5TJTt-KX1SkaxWcfKm3ebGKyEPlemc16n48qDg3jbvmMEfUGr1-2qI3lts8sHFTDdTdo7WNcI7sbTjzelkCx54MdLhimjtH1H_X6E44y2Fyg_TOE8eDN9Gc9WGrig_3cFXM6aUQlYPO3rObNaBUvrRB7EUaCKCboLAIx0eFkEPM3smTmaG0PQFjqFhbb16XCjK2eVRret-tCvQKUFaZw_i9pDOcl80un3CC4SNjg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Saud\",\n    \"age\": \"23\",\n    \"gender\": \"M\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://myfinal-145454.herokuapp.com/actors",
+					"protocol": "http",
+					"host": [
+						"myfinal-145454",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"actors"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
