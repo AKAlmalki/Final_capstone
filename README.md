@@ -5,7 +5,7 @@
  ## URL for the API (Base URL)
   Our API is hosted live via Heroku
  ```bash
- http://heroku.us.com
+http://myfinal-145454.herokuapp.com
  ```
   ## Getting Started
   To get started, make a new directory `movie_studio` for the project files, `cd` to the project directory and make a [`virtual environment`](https://docs.python.org/3/library/venv.html), you should install the dependencies of this application, prepare the local development, and follow the hosting instructions.
@@ -339,4 +339,24 @@ In our app, uses conventional JSON objects to indicate the success or failure of
   - One test for success behavior of each endpoint
   - One test for error behavior of each endpoint
   - At least two tests of RBAC for each role
+  
+  In order to test the application properly, a collection of tests have been added to the project repository to be imported using Postman.
+
+ ### Postman testing
+ 
+ JSON file is included in the project repository, and by following the steps below you will be able to test the application's functionalities:
+ - Open `Postman` program.
+ - Go to `Collections` tab.
+ - Click on `Import` button.
+ - Select the JSON file.
+ - Run the tests.
+ 
+ #### NOTE
+ 
+ + You may have to change the request body or argument in some tests because some of the IDs (either for actors or movies) may not be found.
+ + Check the following tests to make sure there's nothing wrong with the test arguments or body:
+   - DELETE movies - Correct (see the request argument).
+   - DELETE actors - Correct (see the request argument).
+   - PATCH movies - Correct (see the request body).
+   - PATCH actors - Correct (see the request body).
  
