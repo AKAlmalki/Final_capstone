@@ -8,7 +8,7 @@
  http://heroku.us.com
  ```
   ## Getting Started
-  To get started, make a new directory `heroku_sample` for the project files, cd to the project directory and make a virtual environment, you should install the dependencies of this application, prepare the local development, and follow the hosting instructions.
+  To get started, make a new directory `movie_studio` for the project files, `cd` to the project directory and make a [`virtual environment`](https://docs.python.org/3/library/venv.html), you should install the dependencies of this application, prepare the local development, and follow the hosting instructions.
   
   ### Dependencies
   
@@ -30,7 +30,7 @@
   ```
   
   after installing the dependencies, you should change a few things in the files to match your settings and configurations:
-  - `DATABASE_URL, AUTH0_DOMAIN, and CLIENT_ID` in setup.sh file.
+  - `DATABASE_URL, AUTH0_DOMAIN, CLIENT_ID` in setup.sh file.
   
   after you finish, you can run the app locally (in the project directory) using:
   ```
@@ -41,7 +41,7 @@
  
 ## Authentication Login URL
  
- There are three predefined users I have setup for you, you can use them to login into Auth0 and test the RBAC, they are different based on the Role. However, you have to logout to test the other user.
+ There are three predefined users I have prepared for you, you can use them to login into Auth0 and test the RBAC, they are different based on the Role. However, you have to logout to test the other user.
  
 #### Login Info:
  
@@ -97,7 +97,7 @@ https://zshinoz.us.auth0.com/authorize?audience=movieStudioAPI&response_type=tok
  eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkliYkQ4THBuOGZYdy1PYkN4bWZOZSJ9.eyJpc3MiOiJodHRwczovL3pzaGlub3oudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYzM2E2NTA0ZmY2N2ZmYTVhNWVhYzNlNSIsImF1ZCI6Im1vdmllU3R1ZGlvQVBJIiwiaWF0IjoxNjY0Nzc2MjQ2LCJleHAiOjE2NjQ3ODM0NDYsImF6cCI6Ik1NRDgxRktjZ0QwTXplazdUTkNQNmwyVHc3UVZOVk9DIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.ZT6tl-ybulM0nFMpJ2nEJiWv43RXC_nPnGF16s0qGetcfN3w0t8DF7AYvfzBedTf3n63QNXDNYUH1PssQ9YCNTPiqGW8t_jThLdsRsmW5iC8kExz27i5enESDuDq8LxVq42l54k2QB2oZz4tQ4SGwsl7nxPp9vQgQV2_rZPWTZo4euonTYMLTKYiCw2svDDsdfMC4lMTeUNimcEdJdxLJWGGyxr9u9Smgb3ZqxEoTfkJwa8FuK_47jTJTYJzUmjgNNMMfGXClGIG4eiD3WlZheryLQziQWcPV3gWM2I262II4HN0mVISUGWLxydzsrPxjYFZweOCwtyR-DEIfDk3yw
  ```
  
- `NOTE`: you can go to `jwt.io` website to see the content of this token.
+ `NOTE`: you can go to [`jwt.io`](https://jwt.io/) website to see the content of this token.
  
   
  
@@ -141,7 +141,6 @@ python manage.py db upgrade
  ```
  
  
- 
  ## API Endpoints
  
  There are several API endpoints in this application, and it's 8 endpoints in total but it's kind of repeated between two entities which is Movie and Actor.
@@ -161,6 +160,8 @@ python manage.py db upgrade
 + `movies`: paginated movies list that is ordered by id (groups of 10).
 + `total_movies`: the number of current movies.
 
+----------------------------------------------------------------------------------------------------------------------
+
 ### POST /movies
 - Description: create a new movie object.
 
@@ -168,7 +169,7 @@ python manage.py db upgrade
 + `title`: the title of the movie.
 + `release_date`: the release date of the movie.
 
-#### JSON Response body (Search for a book by title)
+#### JSON Response body
 ```bash
 {
   "id": new_movie.id,
@@ -182,109 +183,132 @@ python manage.py db upgrade
 + `movies`: paginated movies list that is ordered by id (groups of 10).
 + `total_movies`: the number of current movies.
 
+----------------------------------------------------------------------------------------------------------------------
 
-### DELETE /books/{book_id}
-- Description: delete an existing book object based on the id.
-- `book_id`: `request argument` that indicates the book id with the type `int`.
+### DELETE /movies/{movie_id}
+- Description: delete an existing movie object based on the id.
+- `movie_id`: `request argument` that indicates the movie id with the type `int`.
+
 #### JSON Response body (Delete an existing book)
 ```bash
 {
-  "success": True,
-  "deleted": book.id,
-  "books": current_books,
-  "total_books": len(Book.query.all()),
-}
-```
-
-#### Attributes
-+ `success`: indicate the success or failure of the request.
-+ `deleted`: indicate the id of the deleted book.
-+ `books`: paginated books list that is ordered by id (groups of 8).
-+ `total_books`: the number of current books.
-
-#### Sample: Delete an existing book
-- `curl http://127.0.0.1:5000/books/23 -X DELETE`
-```bash
-{
-  "books": [
-    {
-      "author": "Stephen King",
-      "id": 1,
-      "rating": 5,
-      "title": "The Outsider: A Novel"
-    },
-    {
-      "author": "Lisa Halliday",
-      "id": 2,
-      "rating": 4,
-      "title": "Asymmetry: A Novel"
-    },
-    {
-      "author": "Kristin Hannah",
-      "id": 3,
-      "rating": 4,
-      "title": "The Great Alone"
-    },
-    {
-      "author": "Tara Westover",
-      "id": 4,
-      "rating": 5,
-      "title": "Educated: A Memoir"
-    },
-    {
-      "author": "Jojo Moyes",
-      "id": 5,
-      "rating": 5,
-      "title": "Still Me: A Novel"
-    },
-    {
-      "author": "Leila Slimani",
-      "id": 6,
-      "rating": 2,
-      "title": "Lullaby"
-    },
-    {
-      "author": "Amitava Kumar",
-      "id": 7,
-      "rating": 5,
-      "title": "Immigrant, Montana"
-    },
-    {
-      "author": "Madeline Miller",
-      "id": 8,
-      "rating": 5,
-      "title": "CIRCE"
-    }
-  ],
-  "deleted": 23,
-  "success": true,
-  "total_books": 16
-}
-
-```
-### PATCH /books/{book_id}
-- Description: update the rating of an existing book object with the attribute value from the JSON request body called `rating`.
-- `book_id`: `request argument` that indicates the book id with the type `int`.
-#### JSON Response body (Delete an existing book)
-```bash
-{
-  "id": book.id,
+  "deleted": movie_id,
   "success": True,
 }
 ```
 
 #### Attributes
++ `deleted`: indicate the id of the deleted movie.
 + `success`: indicate the success or failure of the request.
-+ `id`: indicate the id of the updated book.
 
-#### Sample: Update an existing book with the id 15
-- `curl http://127.0.0.1:5000/books/15 -X PATCH -H "Content-Type: application/json" -d '{"rating":"1"}'`
+----------------------------------------------------------------------------------------------------------------------
+
+### PATCH /movies
+- Description: update the information of an existing movie object with the attribute value from the JSON request body.
+
+#### Request JSON body:
++ `id`: the id of the movie.
++ `title`: the title of the movie.
++ `release_date`: the release date of the movie.
+
+#### JSON Response body
 ```bash
 {
-  "id": 15,
-  "success": true
+  "updated_movie": movie.format(),
+  "success": True,
 }
 ```
+
+#### Attributes
++ `updated_movie`: indicate the updated movie information.
++ `success`: indicate the success or failure of the request.
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
+### GET /actors
+- Description: retrieve all the actors ordered by id.
+- Results are paginated in groups of 20, include a request argument to choose page number (start from 1)
+
+#### JSON Response body
+```bash
+{
+  "actors": formatted_actors,
+  "total_actors": len(Actor.query.all()),
+}
+```
+#### Attributes
++ `actors`: paginated actors list that is ordered by id (groups of 20).
++ `total_actors`: the number of current actors.
+
+----------------------------------------------------------------------------------------------------------------------
+
+### POST /actors
+- Description: create a new actor object.
+
+#### Request JSON body:
++ `name`: the name of the actor.
++ `age`: the age of the actor.
++ `gender`: the gender of the actor.
+
+#### JSON Response body
+```bash
+{
+  "id": new_actor.id,
+  "name": new_actor.name,
+  "actors": formatted_actors,
+  "total_actors": len(Actor.query.all()),
+}
+```
+
+#### Attributes
++ `id`: indicate the id of the new created actor.
++ `name`: indicate the name of the new created actor.
++ `actors`: paginated actors list that is ordered by id (groups of 20).
++ `total_actors`: the number of current actors.
+
+----------------------------------------------------------------------------------------------------------------------
+
+### DELETE /actors/{actor_id}
+- Description: delete an existing actor object based on the id.
+- `actor_id`: `request argument` that indicates the actor id with the type `int`.
+
+#### JSON Response body
+```bash
+{
+  "deleted": actor_id,
+  "success": True,
+}
+```
+
+#### Attributes
++ `deleted`: indicate the id of the deleted actor.
++ `success`: indicate the success or failure of the request.
+
+----------------------------------------------------------------------------------------------------------------------
+
+### PATCH /actors
+- Description: update the information of an existing actor object with the attribute value from the JSON request body.
+
+#### Request JSON body:
++ `id`: the id of the actor.
++ `name`: the name of the actor.
++ `age`: the age of the actor.
++ `gender`: the gender of the actor.
+
+#### JSON Response body
+```bash
+{
+  "updated_actor": actor.format(),
+  "success": True,
+}
+```
+
+#### Attributes
++ `updated_actor`: indicate the updated actor information.
++ `success`: indicate the success or failure of the request.
+
+----------------------------------------------------------------------------------------------------------------------
  
  ## Error Handling
 
@@ -307,7 +331,7 @@ In our app, uses conventional JSON objects to indicate the success or failure of
  - ##### Auth Error (AuthError)
 
  
- 
+ ----------------------------------------------------------------------------------------------------------------------
  
   ## Testing
   
@@ -315,5 +339,4 @@ In our app, uses conventional JSON objects to indicate the success or failure of
   - One test for success behavior of each endpoint
   - One test for error behavior of each endpoint
   - At least two tests of RBAC for each role
- 
  
